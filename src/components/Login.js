@@ -35,10 +35,11 @@ if (email!== 'challenge@alkemy.org'|| password!== 'react'){
 axios
 .post('http://challenge-react.alkemy.org',{email,password})
 .then(res=> { 
-  swAlert(
-    <h2> Perfecto , Ingresaste Correctamente</h2>
-  )
-  console.log(res.data)
+  swAlert(<h2> Perfecto , Ingresaste Correctamente</h2 >)
+  const tokenRecibido = res.data.token;
+  localStorage.setItem('token',tokenRecibido);
+  localStorage.setItem('miNombre','yohannarojo');
+
 })
 }
   return (
