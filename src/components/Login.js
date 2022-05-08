@@ -1,8 +1,14 @@
 import axios from "axios";
 import swAlert from "@sweetalert/with-react";
+// import {Link as LinkRouter} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 
 function Login() {
 	
+const navegacion = useNavigate();
+// console.log(navegacion)
+
+
 	const submitHandler=e=>{
 	e.preventDefault();
 	const email=e.target.email.value;
@@ -38,8 +44,8 @@ axios
   swAlert(<h2> Perfecto , Ingresaste Correctamente</h2 >)
   const tokenRecibido = res.data.token;
   localStorage.setItem('token',tokenRecibido);
-  localStorage.setItem('miNombre','yohannarojo');
-
+  // localStorage.setItem('miNombre','yohannarojo');
+navegacion('/listado')
 })
 }
   return (
@@ -57,6 +63,7 @@ axios
     </label>
     <br />
     <button type="submit">Ingresar</button>
+    {/* <button type="submit"><LinkRouter to="/listado">Ingresar</LinkRouter></button> */}
 </form>
     </>
   );
