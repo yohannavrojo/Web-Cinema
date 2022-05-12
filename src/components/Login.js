@@ -1,70 +1,79 @@
 import axios from "axios";
 import swAlert from "@sweetalert/with-react";
 // import {Link as LinkRouter} from "react-router-dom"
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-	
-const navegacion = useNavigate();
-// console.log(navegacion)
+  const navegacion = useNavigate();
+  // console.log(navegacion)
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const regexEmail =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // console.log(regexEmail.test(email));
 
-	const submitHandler=e=>{
-	e.preventDefault();
-	const email=e.target.email.value;
-	const password=e.target.password.value;
-const regexEmail= /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-// console.log(regexEmail.test(email));
+    if (email === "" || password === "") {
+      swAlert(<h2> los campos no pueden estar vacios</h2>);
 
-if (email=== ''|| password===''){
-  swAlert(
-    <h2> los campos no pueden estar vacios</h2>
-  )
-	
-	return;
-}
-if (email!== ''&& !regexEmail.test(email)){
-  swAlert(
-    <h2> Debes escribir una direccion de correo electronico valida</h2>
-  )
+      return;
+    }
+    if (email !== "" && !regexEmail.test(email)) {
+      swAlert(
+        <h2> Debes escribir una direccion de correo electronico valida</h2>
+      );
 
-  return;
-}
-if (email!== 'challenge@alkemy.org'|| password!== 'react'){
-  swAlert(
-    <h2> Credenciales invalidas</h2>
-  )
+      return;
+    }
+    if (email !== "challenge@alkemy.org" || password !== "react") {
+      swAlert(<h2> Credenciales invalidas</h2>);
 
-  return;
-}
+      return;
+    }
 
-axios
-.post('http://challenge-react.alkemy.org',{email,password})
-.then(res=> { 
-  swAlert(<h2> Perfecto , Ingresaste Correctamente</h2 >)
-  const tokenRecibido = res.data.token;
-  localStorage.setItem('token',tokenRecibido);
-  // localStorage.setItem('miNombre','yohannarojo');
-navegacion('/listado')
-})
-}
+    axios
+      .post("http://challenge-react.alkemy.org", { email, password })
+      .then((res) => {
+        swAlert(<h2> Perfecto , Ingresaste Correctamente</h2>);
+        const tokenRecibido = res.data.token;
+        const dataCompleta = res.data;
+        localStorage.setItem("token", tokenRecibido);
+        localStorage.setItem("data", dataCompleta);
+        navegacion("/listado");
+      });
+  };
   return (
     <>
-    <h2>Formulario de login</h2>
-<form onSubmit={submitHandler}>
-    <label>
-        <span>Correo electrónico:</span><br/>
-        <input type="text"name="email"/><br/>
-    </label>
-    <br/>
-    <label>
-        <span>Contraseña:</span><br/>
-        <input type="password"name="password"/><br/>
-    </label>
-    <br />
-    <button type="submit">Ingresar</button>
-    {/* <button type="submit"><LinkRouter to="/listado">Ingresar</LinkRouter></button> */}
-</form>
+      <div className="container ">
+        <div class="row justify-content-end">
+          <div class="col-8">
+            <h2 className="titulo-login">Formulario de login</h2>
+            <form className="row g-4" onSubmit={submitHandler}>
+              <label className="form-label">
+                <span className="correoE">Correo electrónico:</span>
+                <br />
+                <input className="correoe" type="text" name="email" />
+                <br />
+              </label>
+              <br />
+              <label>
+                <span className="contrasena">Contraseña:</span>
+                <br />
+                <input className="correoe" type="password" name="password" />
+                <br />
+              </label>
+              <br />
+              <div class="d-grid gap-2 d-md-block">
+                <button type="submit" className="btn btn-dark">
+                  Ingresar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
