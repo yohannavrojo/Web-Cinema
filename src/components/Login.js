@@ -1,7 +1,7 @@
 import axios from "axios";
 import swAlert from "@sweetalert/with-react";
 // import {Link as LinkRouter} from "react-router-dom"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const navegacion = useNavigate();
@@ -38,17 +38,20 @@ function Login() {
       .then((res) => {
         swAlert(<h2> Perfecto , Ingresaste Correctamente</h2>);
         const tokenRecibido = res.data.token;
-        const dataCompleta = res.data;
+        
         localStorage.setItem("token", tokenRecibido);
-        localStorage.setItem("data", dataCompleta);
+        
         navegacion("/listado");
       });
   };
+
+  // let token =localStorage.getItem('token');
   return (
     <>
+    {/* {token && <Link to="/listado"/> } */}
       <div className="container ">
-        <div class="row justify-content-end">
-          <div class="col-8">
+        <div className="row justify-content-end">
+          <div className="col-8">
             <h2 className="titulo-login">Formulario de login</h2>
             <form className="row g-4" onSubmit={submitHandler}>
               <label className="form-label">
@@ -65,7 +68,7 @@ function Login() {
                 <br />
               </label>
               <br />
-              <div class="d-grid gap-2 d-md-block">
+              <div className="d-grid gap-2 d-md-block">
                 <button type="submit" className="btn btn-dark">
                   Ingresar
                 </button>
