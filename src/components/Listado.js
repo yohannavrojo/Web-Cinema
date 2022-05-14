@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import {useEffect,useState} from "react"
+import {useEffect,useState} from "react";
 import axios from "axios";
 import swAlert from "@sweetalert/with-react";
 
 function Listado() {
  
-  const token =localStorage.getItem('token');
+  let token =sessionStorage.getItem('token');
  const [moviesList,setMoviesList]=useState([])
   useEffect(()=>{
 
@@ -24,11 +24,9 @@ function Listado() {
 },[setMoviesList])
 
 
-
-
     return (
     <>
-{/* {!token && <Link to="/"/> } */}
+{!token && <Link to="/"/> }
      {/* estructura basica */}
      <div className="row">
      {moviesList.map((oneMovie,idx)=>{
@@ -40,9 +38,7 @@ function Listado() {
               <div className="card-body">
                 <h5 className="card-title">{oneMovie.title}</h5>
                 <p className="card-text">{oneMovie.overview.substring(0,100)} ... </p>
-                <Link className="btn btn-primary" to="/">
-                  View detail
-                </Link>
+                <Link to={`/detalle?ID=${oneMovie.id}`} className="btn btn-primary">View detail</Link>
               </div>
             </div>
           </div>

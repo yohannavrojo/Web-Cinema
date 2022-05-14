@@ -1,6 +1,5 @@
 import axios from "axios";
 import swAlert from "@sweetalert/with-react";
-// import {Link as LinkRouter} from "react-router-dom"
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
@@ -39,13 +38,18 @@ function Login() {
         swAlert(<h2> Perfecto , Ingresaste Correctamente</h2>);
         const tokenRecibido = res.data.token;
         
-        localStorage.setItem("token", tokenRecibido);
+        sessionStorage.setItem("token", tokenRecibido);
         
         navegacion("/listado");
       });
+
+     
+        
+   
   };
 
-  // let token =localStorage.getItem('token');
+  
+  //  let token =sessionStorage.getItem('token');
   return (
     <>
     {/* {token && <Link to="/listado"/> } */}
