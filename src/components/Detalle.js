@@ -1,5 +1,6 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState} from "react";
+import axios from "axios";
 
 function Detalle() {
   let token =sessionStorage.getItem('token');
@@ -7,30 +8,49 @@ function Detalle() {
   let query = new URLSearchParams(window.location.search);
   let ID= query.get('ID');
 
+  const [movie,setMovie] = useState(null);
+
   useEffect(() => {
-    console.log(ID);
+    const endPoint=`https://api.themoviedb.org/3/movie/${ID}?api_key=39589bbdbc401060bd0a0b0c42637834&language=es-ES` 
+    
+    axios.get(endPoint).then(response=>{
+    const moviData= response.data;
+    // cgl de apidata se convierte en la actualizacion del estado
+    setMovie(moviData)
+  })  
+
+  .catch(error=>{
+    console.log('Tuvimos Errores, intenta mas tarde') 
+ })
+ 
   }, [ID]);
 
   return (
-    <>
-      {/* {!token && <Link to="/"/> } */}
-      <h1>Detalle de la pelicula</h1>
-      <div className="row">
-        <div className="col-4">imagen</div>
+    <div>
+
+       {!movie && <p>Cargando...</p>}
+       {movie && 
+      <div className="row" >
+           <h2>Titulo:{movie.title}</h2>
+        <div className="col-4"> <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="img-fluid" alt="movieposter" /></div>
         <div className="col-8">
-          <h2>Titulo:</h2>
-          <h2>Fecha de Estreno:</h2>
+          
+          <h2>Fecha de Estreno:{ movie.release_date }</h2>
           <h2>Reseña:</h2>
-          <p>Duis cillum duis do do sint incididunt veniam et. Tempor aliqua proident est nisi ut id labore amet deserunt anim reprehenderit reprehenderit nisi non. Velit duis exercitation amet occaecat proident ex velit culpa sit nostrud ut esse voluptate.</p>
+          <p> { movie.overview }</p>
+          <h2>Rating: {movie.vote_average}</h2>
           <h2>Generos:</h2>
           <ul>
-              <li>Genero:1</li>
-              <li>Genero:2</li>
-              <li>Genero:3</li>
+              {movie. genres.map(oneGeneres=> <li key={oneGeneres.id}>{oneGeneres.name}</li>) }
+              
           </ul>
         </div>
       </div>
-    </>
+      
+    
+     }
+
+    </div>
   );
 }
 
