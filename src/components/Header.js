@@ -17,6 +17,9 @@ function Header() {
           <li className="nav-link">
             <Link className="text-white bg-dark" to='/listado'>Listado</Link>
           </li>
+          <li className="nav-link">
+            <Link className="text-white bg-dark" to='/favoritos'>Favoritos</Link>
+          </li>
          
           </div>
         </ul>

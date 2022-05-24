@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import swAlert from "@sweetalert/with-react";
 import axios from "axios";
 
-function Resultados() {
+function Resultados({addOrRemoveFromFavs}) {
+
   let query = new URLSearchParams(window.location.search);
   let keyword = query.get("keyword");
 

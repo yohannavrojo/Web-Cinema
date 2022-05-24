@@ -4,7 +4,7 @@ import axios from "axios";
 import swAlert from "@sweetalert/with-react";
 
 function Listado() {
-  
+  // {addOrRemoveFromFavs}
   const addOrRemoveFromFavs = e =>{
 
     const favMovies =  localStorage.getItem('favs')
