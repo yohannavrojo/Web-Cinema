@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import swAlert from "@sweetalert/with-react";
 import axios from "axios";
 
-function Resultados({addOrRemoveFromFavs}) {
+function Resultados(props) {
 
   let query = new URLSearchParams(window.location.search);
   let keyword = query.get("keyword");
@@ -43,9 +43,9 @@ function Resultados({addOrRemoveFromFavs}) {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{oneMovie.title}</h5>
-                  {/* <p className="card-text">
+                  <p className="card-text">
                     {oneMovie.overview.substring(0, 100)} ...{" "}
-                  </p> */}
+                  </p>
                   <Link to={`/detalle?ID=${oneMovie.id}`} className="btn btn-primary">View detail</Link>
                 </div>
               </div>
