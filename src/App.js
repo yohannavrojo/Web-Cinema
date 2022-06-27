@@ -80,18 +80,21 @@ useEffect(() =>{
   }
 
 
-// render={(addOrRemoveFromFavs) => ({ ...addOrRemoveFromFavs })}
-  return (
-   <div className="container">
 
+  return (
+   <div>
+<div>
    <Header favorites ={favorites}/>
+  </div>
    <Routes>
      <Route path="/"  element= {<Login/>}/>
      <Route path="/listado"  element= { <Listado addOrRemoveFromFavs={addOrRemoveFromFavs}/>}/>
      <Route path="/detalle"  element= {<Detalle/>}/>
      <Route path="/resultados"  element= {<Resultados addOrRemoveFromFavs={addOrRemoveFromFavs}/>}/>
      <Route path="/favoritos"  element= {<Favoritos favorites ={favorites} addOrRemoveFromFavs={addOrRemoveFromFavs}/>}/>
+    <Route path="/login" element={<Login addOrRemoveFromFavs={addOrRemoveFromFavs}/> }/>
    </Routes>
+  
    {/* <Footer/> */}
   
    </div>

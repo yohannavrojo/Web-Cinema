@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-
-// components
+import Claqueta from "./CSS/claqueta.png"
 import Buscador from "./Buscador";
 
 
@@ -9,18 +8,21 @@ function Header(props) {
 
   return (
     <header >
-      <nav className="navbar navbar-expand-xl navbar-black bg-black ">
-      <p className="p-3 text-white display-6"> CINEX</p>
-        <ul className="container-fluid"> 
-          <div className="navbar-nav">
+      <nav className="navbar">
+      <img className="header-img"
+            src={Claqueta}
+            />
+      
+        <ul className="menu-navbar"> 
+          <div className="div-navbar">
           <li className="nav-link">
-            <Link  className="text-white bg-dark" to='/'>Home</Link>
+            <Link  className="text-white" to='/'>Home</Link>
           </li>
           <li className="nav-link">
-            <Link className="text-white bg-dark" to='/listado'>Listado</Link>
+            <Link className="text-white " to='/listado'>Listado</Link>
           </li>
           <li className="nav-link">
-            <Link className="text-white bg-dark" to='/favoritos'>Favoritos</Link>
+            <Link className="text-white " to='/favoritos'>Favoritos</Link>
           </li>
           <li className="nav-link d-flex align-item-center" >
            <span className="text-success " >
