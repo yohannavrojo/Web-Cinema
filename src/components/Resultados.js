@@ -4,7 +4,6 @@ import swAlert from "@sweetalert/with-react";
 import axios from "axios";
 
 function Resultados(props) {
-
   let query = new URLSearchParams(window.location.search);
   let keyword = query.get("keyword");
 
@@ -16,21 +15,21 @@ function Resultados(props) {
       .get(endPoint)
       .then((response) => {
         const moviArray = response.data.results;
-        if (moviArray.length ===0) {
-            swAlert(<h1>No Obtuvimos Ningun Resultado</h1>)   
+        if (moviArray.length === 0) {
+          swAlert(<h1>No Obtuvimos Ningun Resultado</h1>);
         }
         // cgl de apidata se convierte en la actualizacion del estado
         setMovieResults(moviArray);
       })
       .catch((error) => console.log(error));
-  },[keyword]);
+  }, [keyword]);
 
   return (
     <>
       <h2>
         Buscaste:<em>{keyword}</em>
       </h2>
-     {movieResults.length === 0 && <h3>No hay resultados </h3>}
+      {movieResults.length === 0 && <h3>No hay resultados </h3>}
       <div className="row">
         {movieResults.map((oneMovie, idx) => {
           return (
@@ -46,7 +45,12 @@ function Resultados(props) {
                   <p className="card-text">
                     {oneMovie.overview.substring(0, 100)} ...{" "}
                   </p>
-                  <Link to={`/detalle?ID=${oneMovie.id}`} className="btn btn-primary">View detail</Link>
+                  <Link
+                    to={`/detalle?ID=${oneMovie.id}`}
+                    className="btn btn-primary"
+                  >
+                    View detail
+                  </Link>
                 </div>
               </div>
             </div>

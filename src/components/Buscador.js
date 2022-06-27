@@ -1,5 +1,6 @@
 import {useNavigate}from 'react-router-dom'
 import swAlert from "@sweetalert/with-react";
+import { ImSearch } from 'react-icons/im';
 
 function Buscador() {
   const navegacion = useNavigate();
@@ -20,12 +21,12 @@ function Buscador() {
   return (
 
 
-    <form className="d-flex alig-items-center" onSubmit={submitHandler}>
+    <form className="search " onSubmit={submitHandler}>
 
-      <label className="form-label mb-0 mx-4 my-2">
-        <input className="form-control" type="text" name="keyword" placeholder="Buscar.."/>
+      <label className="search-label  ">
+        <input className="formu" type="text" name="keyword" placeholder="Buscar.."/>
       </label>
-        <button type="submit" className="btn btn-success  mx-3">Buscar</button>
+       <button type="submit" className="btn my-5"style={{ color: 'white ', size: '4em' }}><ImSearch  /></button>
       
     </form>
   );
