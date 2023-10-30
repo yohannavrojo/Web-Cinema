@@ -1,3 +1,6 @@
+![Cine - Google Chrome 30_10_2023 2 16 02](https://github.com/yohannavrojo/Web-Cinema/assets/93559066/d26681c1-382f-44fa-adc2-83ccb5415591)
+
+La aplicación de cine en React es una herramienta sencilla pero efectiva que te permite buscar películas y agregarlas a tu lista de favoritos. Puedes explorar una amplia variedad de películas, buscar tus favoritas y mantener un registro de ellas en tu propia colección de favoritos. Con una interfaz intuitiva y fácil de usar, esta aplicación es perfecta para los amantes del cine que desean una forma conveniente de descubrir y recordar sus películas preferidas
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
